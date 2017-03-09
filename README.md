@@ -1,4 +1,4 @@
 AutomateTheBoringStuff
 
-This is just a collection of some Automate The Boring Stuff inspired scripts
+This is just a collection of some Automate the Boring Stuff inspired scripts
 
