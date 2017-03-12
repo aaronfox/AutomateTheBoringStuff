@@ -4,6 +4,7 @@
 # that is input either by the command line or by the clipboard
 
 # TODO: remove loggings
+# Ehh.. a little bit of loggings never hurt anybody...
 
 import requests, sys, webbrowser, bs4, logging, pyperclip
 
@@ -12,14 +13,14 @@ logging.disable(logging.CRITICAL)
 
 headerInfo = { "User-Agent": "Mozilla/5.0"}
 
-headers = {
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", 
-              "Accept-Encoding": "gzip, deflate, sdch, br", 
-              "Accept-Language": "en-US,en;q=0.8", 
-              "Host": "httpbin.org", 
-              "Upgrade-Insecure-Requests": "1", 
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
-        }
+# headers = {
+#             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", 
+#               "Accept-Encoding": "gzip, deflate, sdch, br", 
+#               "Accept-Language": "en-US,en;q=0.8", 
+#               "Host": "httpbin.org", 
+#               "Upgrade-Insecure-Requests": "1", 
+#               "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+#         }
 
 if len(sys.argv) > 1:
     res = requests.get('https://www.amazon.com/' +
@@ -40,6 +41,7 @@ numOpen = min(5, len(productElems))
 
 incrementer = 0
 while incrementer < numOpen:
+    # skip over sponsored links so the consumer gets what he wants
     if productElems[incrementer].get('href')[:3] != 'htt':
         incrementer += 1
         numOpen += 1
